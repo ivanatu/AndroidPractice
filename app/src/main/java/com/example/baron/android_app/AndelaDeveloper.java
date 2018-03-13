@@ -25,6 +25,7 @@ public class AndelaDeveloper{
         this.location = location;
     }
 
+
     public String getgithub() {
         return github;
     }
@@ -32,4 +33,5 @@ public class AndelaDeveloper{
     public void setgithub(String github) {
         this.github = github;
     }
+
 }

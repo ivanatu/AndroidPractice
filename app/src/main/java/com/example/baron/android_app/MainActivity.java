@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         developers.add(new AndelaDeveloper("baron", "malaba"));
         developers.add(new AndelaDeveloper("chris", "nairobi"));
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
 //    public void sendMessage(View view) {
 //        Intent intent = new Intent(this, DisplayMessageActivity.class);
 //        TextView editText = (TextView) findViewById(R.id.github);
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message);
 //        startActivity(intent);
 //    }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

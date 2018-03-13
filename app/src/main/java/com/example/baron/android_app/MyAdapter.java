@@ -31,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final AndelaDeveloper andeladeveloper = developers.get(position);
+        AndelaDeveloper andeladeveloper = developers.get(position);
 
         holder.github.setText(andeladeveloper.getgithub());
         holder.location.setText(andeladeveloper.getlocation());
