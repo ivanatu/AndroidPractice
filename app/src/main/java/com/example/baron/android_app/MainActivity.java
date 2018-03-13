@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static ArrayList<AndelaDeveloper> developers = new ArrayList<>();
+    public static final String EXTRA_MESSAGE = "WELCOME HOME";
+
 
     static{
         developers.add(new AndelaDeveloper("ivan", "gongo"));
         developers.add(new AndelaDeveloper("baron", "malaba"));
+        developers.add(new AndelaDeveloper("chris", "nairobi"));
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
     }
+
+
+//    public void sendMessage(View view) {
+//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+//        TextView editText = (TextView) findViewById(R.id.github);
+//        String message = editText.toString();
+////        String message = editText.getText().toString();
+//        intent.putExtra(EXTRA_MESSAGE, message);
+//        startActivity(intent);
+//    }
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

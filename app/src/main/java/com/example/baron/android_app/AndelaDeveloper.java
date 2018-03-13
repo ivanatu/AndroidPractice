@@ -21,15 +21,17 @@ public class AndelaDeveloper{
         return location;
     }
 
-//    public void setlocation(String location) {
-//        this.location = location;
-//    }
+    public void setlocation(String location) {
+        this.location = location;
+    }
+
 
     public String getgithub() {
         return github;
     }
 
-//    public void setgithub(String github) {
-//        this.github = github;
-//    }
+    public void setgithub(String github) {
+        this.github = github;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.baron.android_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,23 +36,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.github.setText(andeladeveloper.getgithub());
         holder.location.setText(andeladeveloper.getlocation());
 
-
-//
-////        holder.mView.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                if (null != mListener) {
-////                    // Notify the active callbacks interface (the activity, if the
-////                    // fragment is attached to one) that an item has been selected.
-////                    mListener.onListFragmentInteraction(holder.mItem);
-////                }
-////            }
-////        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              Intent detailIntent = new Intent(v.getContext(), DisplayMessageActivity.class);
+              detailIntent.putExtra("github", andeladeveloper.getgithub());
+              detailIntent.putExtra("location", andeladeveloper.getlocation());
+//              detailIntent.putExtra("GITURL", gitUrl);
+              v.getContext().startActivity(detailIntent);
+          }
+       });
     }
 
     @Override
     public int getItemCount() {
         return developers.size();
+    }
+
+    private void openDetailActivity(String github,String location)
+
+    {
+        Intent i=new Intent(context, DisplayMessageActivity.class);
+
+        //PACK DATA TO SEND
+        i.putExtra("github",github);
+        i.putExtra("location", location);
+//        i.putExtra("IMAGE_KEY",image);
+
+        //open activity
+        context.startActivity(i);
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
