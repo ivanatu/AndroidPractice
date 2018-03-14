@@ -1,9 +1,11 @@
 package com.example.baron.android_app.presenter;
 
+<<<<<<< HEAD
 import com.example.baron.android_app.model.GithubUsers;
 import com.example.baron.android_app.service.GithubService;
 
 import java.util.List;
+
 
 /**
  * Created by baron on 13/03/2018.
@@ -44,4 +46,5 @@ public class GithubUsersPresenter {
                     }
                 });
     }
+
 }
