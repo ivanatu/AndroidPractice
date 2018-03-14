@@ -1,6 +1,5 @@
 package com.example.baron.android_app.presenter;
 
-<<<<<<< HEAD
 import com.example.baron.android_app.model.GithubUsers;
 import com.example.baron.android_app.service.GithubService;
 
