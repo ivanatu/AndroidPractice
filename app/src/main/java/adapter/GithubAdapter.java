@@ -1,4 +1,4 @@
-package com.example.baron.android_app.view;
+package adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.baron.android_app.R;
 import com.example.baron.android_app.model.GithubUsers;
+import com.example.baron.android_app.view.DisplayGIthubUsersActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -18,11 +19,9 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     private ArrayList<GithubUsers> developers;
     private Context context;
 
-
     public GithubAdapter(ArrayList<GithubUsers> developers, Context context) {
         this.developers = developers;
         this.context = context;
-
     }
 
     @Override
@@ -33,19 +32,26 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final GithubAdapter.ViewHolder holder, int position) {
         final GithubUsers githubusers = developers.get(position);
 
-        holder.github.setText(githubusers.getgithub());
-        holder.location.setText(githubusers.getlocation());
+        holder.username.setText(githubusers.getUserName());
+
+        Picasso.with(context)
+                .load(githubusers.getProfileImage())
+                .placeholder(R.drawable.ic_image_black_24dp)
+                .into(holder.imageView);
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              Intent detailIntent = new Intent(v.getContext(), DisplayMessageActivity.class);
-              detailIntent.putExtra("github", githubusers.getgithub());
-              detailIntent.putExtra("location", githubusers.getlocation());
-//              detailIntent.putExtra("GITURL", gitUrl);
+              Intent detailIntent = new Intent(v.getContext(), DisplayGIthubUsersActivity.class);
+              detailIntent.putExtra("profileImage", githubusers.getProfileImage());
+              detailIntent.putExtra("username", githubusers.getUserName());
+              detailIntent.putExtra("github", githubusers.getGithub());
+              detailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
               v.getContext().startActivity(detailIntent);
           }
        });
@@ -56,41 +62,17 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
         return developers.size();
     }
 
-    private void openDetailActivity(String github,String location)
-
-    {
-        Intent i=new Intent(context, DisplayMessageActivity.class);
-
-        //PACK DATA TO SEND
-        i.putExtra("github",github);
-        i.putExtra("location", location);
-//        i.putExtra("IMAGE_KEY",image);
-
-        //open activity
-        context.startActivity(i);
-
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public  ImageView imageView;
         public  TextView github;
-        public  TextView location;
+        public  TextView username;
 
-//        String githubtext;
-//        String locationtext;
-//        Drawable image;
 
         public ViewHolder(View view) {
             super(view);
-            imageView = (ImageView) view.findViewById(R.id.imageView);
-            github = (TextView) view.findViewById(R.id.github);
-            location = (TextView) view.findViewById(R.id.location);
+            imageView = view.findViewById(R.id.imageView);
+            username = view.findViewById(R.id.username);
         }
 
-
-//    @Override
-//    public String toString() {
-//            return super.toString() + " '" + mContentView.getText() + "'";
-//        }
     }
 }
