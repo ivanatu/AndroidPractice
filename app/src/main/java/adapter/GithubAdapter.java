@@ -14,12 +14,12 @@ import com.example.baron.android_app.model.GithubUsers;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder> {
     private ArrayList<GithubUsers> developers;
     private Context context;
 
 
-    public MyAdapter(ArrayList<GithubUsers> developers, Context context) {
+    public GithubAdapter(ArrayList<GithubUsers> developers, Context context) {
         this.developers = developers;
         this.context = context;
 
