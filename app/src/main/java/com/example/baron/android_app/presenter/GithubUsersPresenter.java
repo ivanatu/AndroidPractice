@@ -1,10 +1,25 @@
 package com.example.baron.android_app.presenter;
 
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.example.baron.android_app.model.GithubUsers;
+import com.example.baron.android_app.model.GithubUsersResponse;
+import com.example.baron.android_app.service.GithubApiInterface;
 import com.example.baron.android_app.service.GithubService;
+import com.example.baron.android_app.view.MainActivity;
 
-import java.util.List;
+import adapter.GithubAdapter;
 
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static android.widget.Toast.*;
 
 /**
  * Created by baron on 13/03/2018.
@@ -13,37 +28,46 @@ import java.util.List;
 public class GithubUsersPresenter {
 
     private GithubService githubService;
+    private Context context;
 
-    private GithubUsersPresenter(){
-        if(this.githubService == null){
+    public GithubUsersPresenter(Context context) {
+        this.context = context;
+        if (this.githubService == null) {
             this.githubService = new GithubService();
         }
     }
 
-    public void getUsers(){
-        githubService
-                .getAPI()
-                .gettotalcount()
-                .enqueue(new Callback<Data>(){
-                    @Override
-                    public void onResponse(){
-                        Data data = response.body();
+    public void getUsers(final RecyclerView recyclerView) {
+        try{
+            githubService
+                    .getAPI()
+                    .getDevelopers()
+                    .enqueue(new Callback<GithubUsersResponse>() {
 
-                        if (data != null && data.getRestResponse() != null) {
-                            List<GithubUsers> result = data.getRestResponse().getResult();
-                            countryView.countriesReady(result);
-                        }
-                    }
+                        @Override
+                        public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
+                            ArrayList<GithubUsers> developers = response.body().getDevelopers();
 
-                    @Override
-                    public void onFailure(Call<Data> call, Throwable t) {
-                        try {
-                            throw new InterruptedException("Something went wrong!");
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            if (developers != null) {
+                                RecyclerView.Adapter adapter = new GithubAdapter(developers, context);
+                                recyclerView.setAdapter(adapter);
+                                recyclerView.smoothScrollToPosition(0);
+                            }
                         }
-                    }
-                });
+
+                        @Override
+                        public void onFailure(Call<GithubUsersResponse> call, Throwable t) {
+                            try {
+                                throw new InterruptedException("Something went wrong!");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+        }catch (Exception e ){
+            Log.d("Error", e.getMessage());
+        }
+
     }
-
 }
+

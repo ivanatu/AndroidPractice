@@ -11,14 +11,13 @@ public class GithubService {
 
     private Retrofit retrofit = null;
 
-
     /**
      * This method creates a new instance of the API interface.
      *
      * @return The API interface
      */
     public GithubApiInterface getAPI() {
-        String BASE_URL = "https://api.github.com/";
+        String BASE_URL = "https://api.github.com";
 
         if (retrofit == null) {
             retrofit = new Retrofit

@@ -1,36 +1,43 @@
 package com.example.baron.android_app.view;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.baron.android_app.R;
 import com.example.baron.android_app.model.GithubUsers;
-
+import com.example.baron.android_app.presenter.GithubUsersPresenter;
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
+    RecyclerView mRecyclerView;
+    TextView Disconnected;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    RecyclerView.LayoutManager mLayoutManager;
     private static ArrayList<GithubUsers> developers = new ArrayList<>();
-    public static final String EXTRA_MESSAGE = "WELCOME HOME";
-
-
-    static{
-        developers.add(new GithubUsers("ivan", "gongo"));
-        developers.add(new GithubUsers("baron", "malaba"));
-        developers.add(new GithubUsers("chris", "nairobi"));
-    }
-
+    private GithubUsersPresenter presenter = new GithubUsersPresenter(MainActivity.this);
+    private SwipeRefreshLayout swipeRefreshLayout;
+    ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.list);
+
+        setContentView(R.layout.activity_main);
+        pd = new ProgressDialog(this);
+        pd.setMessage("Fetching Github Users...");
+        pd.setCancelable(false);
+        pd.show();
+
+        mRecyclerView = findViewById(R.id.list);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -41,39 +48,35 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MyAdapter(developers, this);
-        mRecyclerView.setAdapter(mAdapter);
+//        mAdapter = new GithubAdapter(developers, this);
+//        mRecyclerView.setAdapter(mAdapter);
+        presenter.getUsers(mRecyclerView);
+
+        swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_orange_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Disconnected = findViewById(R.id.disconnected);
+                try{
+                    presenter.getUsers(mRecyclerView);
+                    swipeRefreshLayout.setRefreshing(false);
+                }catch(Exception e ){
+                    Log.d("Error", e.getMessage());
+                    Disconnected.setVisibility(mRecyclerView.VISIBLE);
+                    Toast.makeText(MainActivity.this, "Error Fetching data", Toast.LENGTH_SHORT).show();
+                }
+                Toast.makeText(MainActivity.this, "Github users Refreshed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        pd.dismiss();
 
     }
 
-//    public void sendMessage(View view) {
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        TextView editText = (TextView) findViewById(R.id.github);
-//        String message = editText.toString();
-////        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        startActivity(intent);
+//    private void loadJSON() {
+//
 //    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
 }

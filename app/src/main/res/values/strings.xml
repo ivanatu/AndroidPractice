@@ -4,4 +4,5 @@
     <string name="github">github</string>
     <string name="location">location</string>
     <string name="profile_image_description">profile image</string>
+    <string name="internet"> No internet connection on your device </string>
 </resources>

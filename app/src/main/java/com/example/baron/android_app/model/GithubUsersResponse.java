@@ -1,6 +1,7 @@
 package com.example.baron.android_app.model;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 
 /**
  * Created by baron on 12/03/2018.
@@ -8,14 +9,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class GithubUsersResponse {
 
-    @SerializedName("total_count")
-    private int totalcount;
+    @SerializedName("items")
+    public ArrayList<GithubUsers> developers;
 
-    public int getTotalCount() {
-        return totalcount;
-    }
-
-    public void setTotalCount(int totalcount) {
-        this.totalcount = totalcount;
+    public ArrayList<GithubUsers> getDevelopers() {
+        return developers;
     }
 }

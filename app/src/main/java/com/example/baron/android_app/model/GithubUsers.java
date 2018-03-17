@@ -9,53 +9,30 @@ public class GithubUsers {
     @SerializedName("login") // from github
     private String username; // your custom name
 
-    @SerializedName("avatarUrl")
+    @SerializedName("avatar_url")
     private String profileImage;
 
-    @SerializedName("htmlUrl")
+    @SerializedName("html_url")
     private String github;
 
-    @SerializedName("organizations_url")
-    private String location;
 
-    public GithubUsers(String username, String location){
-        this.username=username;
+    public GithubUsers(String profileImage, String username, String github){
         this.profileImage=profileImage;
+        this.username=username;
         this.github=github;
-        this.location=location;
     }
-
-    public String getusername() {
-        return username;
-    }
-
-    public void setusername(String username) {
-        this.username = username;
-    }
-
     public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+    public String getUserName() {
+        return username;
     }
 
-    public String getgithub() {
+    public String getGithub() {
         return github;
     }
 
-    public void setgithub(String github) {
-        this.github = github;
-    }
-
-    public String getlocation() {
-        return location;
-    }
-
-    public void setlocation(String location) {
-        this.location = location;
-    }
 
 
 }
