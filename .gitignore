@@ -1,13 +1,18 @@
 *.iml
 .gradle
-.idea
+.idea/
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
 /build
+# Android Studio captures folder
+captures/
 /captures
 .externalNativeBuild
 
 .idea/instapk.xml
 instapk.log*
+
+.hgignore
+instapk.properties
