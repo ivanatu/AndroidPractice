@@ -1,0 +1,85 @@
+// Create a Gradle task to run the check.
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
+check.dependsOn 'checkstyle', 'pmd', 'findbugs', 'lint'
+
+// configuration directory path
+def configDir = "${project.rootDir}/app"
+def reportsDir = "${project.buildDir}/reports"
+
+checkstyle {
+    toolVersion "7.6.1"
+}
+
+// Checkstyle Task
+task checkstyle(type: Checkstyle) {
+    description 'Check Code Standard'
+    group 'verification'
+
+    configFile file("$configDir/code_quality_tools/checkstyle.xml")
+    source 'app/src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/test/**'
+    exclude '**/androidTest/**'
+    exclude '/R.java'
+    exclude '**/BuildConfig.java'
+
+    classpath = files()
+    ignoreFailures = false
+}
+
+// PMD Task
+task pmd(type: Pmd) {
+    description 'Run PMD'
+    group 'verification'
+
+    ruleSetFiles = files("$configDir/code_quality_tools/pmd.xml")
+    source 'app/src/main'
+    include '**/*.java'
+    exclude '**/gen/**'
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+
+    ignoreFailures = false
+}
+
+// FindBugs Task
+task findbugs(type: FindBugs) {
+    description 'Run FindBugs'
+    group 'verification'
+
+    classes = files("$project.buildDir/intermediates/classes")
+    source 'app/src/main'
+//    source = fileTree('src/main/java/')
+
+
+    classpath = files()
+    effort 'max'
+    reportLevel = 'high'
+
+    // Use this only if you want exclude some errors
+    excludeFilter file("$configDir/code_quality_tools/findbugs.xml")
+
+    reports {
+        xml.enabled = false
+        html.enabled =  true
+    }
+
+    ignoreFailures = false
+}
+
+android {
+    lintOptions {
+        abortOnError true
+        quiet true
+        lintConfig file("$configDir/lint.xml")
+        xmlReport false
+        htmlReport true
+        htmlOutput file("$reportsDir/lint.html")
+    }
+}
