@@ -26,13 +26,14 @@ public class GithubUsers implements Parcelable{
         this.github=github;
     }
 
-    protected GithubUsers(Parcel in) {
+    public GithubUsers(Parcel in) {
         username = in.readString();
         profileImage = in.readString();
         github = in.readString();
     }
 
-    public static final Creator<GithubUsers> CREATOR = new Creator<GithubUsers>() {
+    public static final Creator<GithubUsers> CREATOR =
+            new Creator<GithubUsers>() {
         @Override
         public GithubUsers createFromParcel(Parcel in) {
             return new GithubUsers(in);
