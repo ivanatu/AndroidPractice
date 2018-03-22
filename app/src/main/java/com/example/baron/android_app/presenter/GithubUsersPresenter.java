@@ -37,7 +37,12 @@ public class GithubUsersPresenter {
         }
     }
 
-    public void getUsers(final RecyclerView recyclerView) {
+    public interface ViewGithubUsers{
+        void displayGithubUsers(ArrayList<GithubUsers> developerlists);
+    }
+
+    public void getUsers(final MainActivity main) {
+//        final RecyclerView recyclerView = null;
         try{
             githubService
                     .getAPI()
@@ -45,13 +50,15 @@ public class GithubUsersPresenter {
                     .enqueue(new Callback<GithubUsersResponse>() {
 
                         @Override
-                        public void onResponse(Call<GithubUsersResponse> call, Response<GithubUsersResponse> response) {
+                        public void onResponse(Call<GithubUsersResponse> call,
+                                               Response<GithubUsersResponse> response) {
                             ArrayList<GithubUsers> developers = response.body().getDevelopers();
 
                             if (developers != null) {
-                                RecyclerView.Adapter adapter = new GithubAdapter(developers, context);
-                                recyclerView.setAdapter(adapter);
-                                recyclerView.smoothScrollToPosition(0);
+//
+//                                recyclerView.setAdapter(adapter);
+//                                recyclerView.smoothScrollToPosition(0);
+                                main.displayGithubUsers(developers);
                             }
                         }
 
