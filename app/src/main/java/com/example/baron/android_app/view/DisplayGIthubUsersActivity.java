@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.example.baron.android_app.R;
 
@@ -47,7 +47,6 @@ public class DisplayGIthubUsersActivity extends AppCompatActivity {
         github.setText(github2);
         Linkify.addLinks(github, Linkify.WEB_URLS);
 
-        getSupportActionBar().setTitle("Details Activity");
     }
 
     private Intent createShareForcastIntent(){

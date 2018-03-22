@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 
 public interface GithubApiInterface {
 
-    @GET("/search/users?q=location:nairobi+language:python&per_page=10&sort=followers")
+    @GET("/search/users?q=location:nairobi+language:python&per_page=40&sort=followers")
     Call<GithubUsersResponse> getDevelopers();
 
 }
