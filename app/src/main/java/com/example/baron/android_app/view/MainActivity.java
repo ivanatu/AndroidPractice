@@ -3,25 +3,21 @@ package com.example.baron.android_app.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
-//import android.widget.Toolbar;
 
 import com.example.baron.android_app.R;
 import com.example.baron.android_app.model.GithubUsers;
 import com.example.baron.android_app.presenter.GithubUsersPresenter;
+
 import java.util.ArrayList;
-
 import adapter.GithubAdapter;
-
 
 public class MainActivity extends AppCompatActivity implements GithubUsersPresenter.ViewGithubUsers{
     RecyclerView mRecyclerView;
@@ -42,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         appBar = findViewById(R.id.app_bar);
 //        ImageView headerImage = findViewById(R.id.app_bar_image);
         setSupportActionBar(appBar);

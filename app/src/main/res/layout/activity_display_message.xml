@@ -6,6 +6,13 @@
     tools:context="com.example.baron.android_app.view.DisplayGIthubUsersActivity"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        style="@style/Widget.AppCompat.Toolbar"
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        />
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
