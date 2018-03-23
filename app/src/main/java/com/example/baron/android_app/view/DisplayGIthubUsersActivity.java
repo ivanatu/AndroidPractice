@@ -2,12 +2,10 @@ package com.example.baron.android_app.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ShareCompat;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,8 +33,8 @@ public class DisplayGIthubUsersActivity extends AppCompatActivity {
         //RECEIVE DATA
         Intent i=this.getIntent();
         String image2 = i.getExtras().getString("profileImage");
-        String username2=i.getExtras().getString("username");
-        String github2=i.getExtras().getString("github");
+        final String username2=i.getExtras().getString("username");
+        final String github2=i.getExtras().getString("github");
 
         //BIND DATA
         Glide.with(this)
@@ -47,24 +45,19 @@ public class DisplayGIthubUsersActivity extends AppCompatActivity {
         github.setText(github2);
         Linkify.addLinks(github, Linkify.WEB_URLS);
 
-    }
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBodyText = "Check out this awesome developer @"+username2+", "+github2;
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT,"Subject here");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBodyText);
+                startActivity(sharingIntent);
 
-    private Intent createShareForcastIntent(){
-        String username2=getIntent().getExtras().getString("username");
-        String github2=getIntent().getExtras().getString("github");
-        Intent shareIntent = ShareCompat.IntentBuilder.from(this)
-                .setType("text/plain")
-                .setText("Check out this awesome developer  " + username2 + "," + github2)
-                .getIntent();
-        return  shareIntent;
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.action_share);
-        menuItem.setIntent(createShareForcastIntent());
-        return true;
+            }
+        });
     }
 
 }

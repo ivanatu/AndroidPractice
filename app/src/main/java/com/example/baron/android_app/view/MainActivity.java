@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter adapter = new GithubAdapter(users, this);
         mRecyclerView.setAdapter(adapter);
