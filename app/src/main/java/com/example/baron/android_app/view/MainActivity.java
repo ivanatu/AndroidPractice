@@ -3,14 +3,17 @@ package com.example.baron.android_app.view;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+//import android.widget.Toolbar;
 
 import com.example.baron.android_app.R;
 import com.example.baron.android_app.model.GithubUsers;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
     RecyclerView mRecyclerView;
     TextView Disconnected;
 
+    Toolbar appBar;
     private RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     ArrayList<GithubUsers> developers = new ArrayList<>();
@@ -38,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appBar = findViewById(R.id.app_bar);
+//        ImageView headerImage = findViewById(R.id.app_bar_image);
+        setSupportActionBar(appBar);
 
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching Github Users...");
