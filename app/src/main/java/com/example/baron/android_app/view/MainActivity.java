@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
         setContentView(R.layout.activity_main);
         appBar = findViewById(R.id.app_bar);
 //        ImageView headerImage = findViewById(R.id.app_bar_image);
+        appBar.setTitle("Github Users");
         setSupportActionBar(appBar);
 
         pd = new ProgressDialog(this);

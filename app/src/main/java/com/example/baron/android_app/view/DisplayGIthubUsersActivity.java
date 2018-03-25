@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.util.Linkify;
 import android.view.View;
 import android.view.Menu;
@@ -23,10 +24,16 @@ public class DisplayGIthubUsersActivity extends AppCompatActivity {
     ImageView imageView;
     TextView username;
     TextView github;
+    Toolbar appBar;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
+        appBar = findViewById(R.id.app_bar);
+//        ImageView headerImage = findViewById(R.id.app_bar_image);
+        appBar.setTitle("User Details");
+        setSupportActionBar(appBar);
+
 
         //INITIALIZE VIEWS
         imageView =  findViewById(R.id.imageView1);
