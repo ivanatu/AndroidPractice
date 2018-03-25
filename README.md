@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/ivanatu/AndroidPractice/badge.svg?branch=develop)](https://coveralls.io/github/ivanatu/AndroidPractice?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/ivanatu/AndroidPractice/badge.svg?branch=ft-ui/ux-revamp-156037248)](https://coveralls.io/github/ivanatu/AndroidPractice?branch=ft-ui/ux-revamp-156037248)
 [![CircleCI](https://circleci.com/gh/ivanatu/AndroidPractice/tree/develop.svg?style=svg)](https://circleci.com/gh/ivanatu/AndroidPractice/tree/develop)
 # Android Practice
 
