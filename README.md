@@ -1,5 +1,5 @@
-
-
+[![Coverage Status](https://coveralls.io/repos/github/ivanatu/AndroidPractice/badge.svg?branch=develop)](https://coveralls.io/github/ivanatu/AndroidPractice?branch=develop)
+[![CircleCI](https://circleci.com/gh/ivanatu/AndroidPractice/tree/develop.svg?style=svg)](https://circleci.com/gh/ivanatu/AndroidPractice/tree/develop)
 # Android Practice
 
 This is an android level up project for using github API to retrieve users based in Nairobi.
