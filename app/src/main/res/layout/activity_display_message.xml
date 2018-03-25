@@ -47,38 +47,6 @@ android:layout_height="match_parent"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginTop="400dp"-->
-            <!--android:backgroundTint="@android:color/holo_blue_light"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/username1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_below="@+id/imageView1"-->
-            <!--android:text="Github username"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textSize="30dp"-->
-            <!--android:textStyle="bold" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/github1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/imageView1"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_marginTop="40dp"-->
-            <!--android:text="Github Link"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textSize="30dp"-->
-            <!--android:textStyle="bold" />-->
-            <!--</LinearLayout>-->
-
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
