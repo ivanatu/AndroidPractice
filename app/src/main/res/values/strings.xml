@@ -11,4 +11,6 @@
     <string name="shr_category_home">home</string>
     <string name="shr_category_popsicles">popsicles</string>
     <string name="action_favorite">Github User Details</string>
+    <string name="no_connection">No Internet</string>
+    <string name="fetch_failed">failed to fetch</string>
 </resources>

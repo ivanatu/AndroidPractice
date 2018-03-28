@@ -5,4 +5,5 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="github">16dp</dimen>
     <dimen name="location">10dp</dimen>
+    <dimen name="snackbar_icon_padding">40dp</dimen>
 </resources>
