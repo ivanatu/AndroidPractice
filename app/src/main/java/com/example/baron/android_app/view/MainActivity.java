@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
     }
 
     private void setSwipeRefreshLayout() {
+        final Bundle savedInstanceState=null;
         swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                queryApi(swipeRefreshLayout);
+                checkConnection(savedInstanceState);
             }
         });
     }
