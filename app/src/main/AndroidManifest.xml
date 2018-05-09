@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        >
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name">
@@ -19,7 +20,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.DisplayGIthubUsersActivity"
+        <activity
+            android:name=".view.DisplayGIthubUsersActivity"
+            android:label="@string/app_name"
             android:parentActivityName=".view.MainActivity">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

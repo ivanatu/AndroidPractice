@@ -5,25 +5,25 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.baron.android_app.R;
 import com.example.baron.android_app.model.GithubUsers;
 import com.example.baron.android_app.presenter.GithubUsersPresenter;
+
 import java.util.ArrayList;
-
 import adapter.GithubAdapter;
-
 
 public class MainActivity extends AppCompatActivity implements GithubUsersPresenter.ViewGithubUsers{
     RecyclerView mRecyclerView;
     TextView Disconnected;
 
+    Toolbar appBar;
     private RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
     ArrayList<GithubUsers> developers = new ArrayList<>();
@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        appBar = findViewById(R.id.app_bar);
+//        ImageView headerImage = findViewById(R.id.app_bar_image);
+        appBar.setTitle("Github Users");
+        setSupportActionBar(appBar);
 
         pd = new ProgressDialog(this);
         pd.setMessage("Fetching Github Users...");
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements GithubUsersPresen
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new GridLayoutManager(this,2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         RecyclerView.Adapter adapter = new GithubAdapter(users, this);
         mRecyclerView.setAdapter(adapter);

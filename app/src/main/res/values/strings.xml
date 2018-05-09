@@ -5,4 +5,10 @@
     <string name="location">location</string>
     <string name="profile_image_description">profile image</string>
     <string name="internet"> No internet connection on your device </string>
+    <string name="shr_product_category">Profile Image</string>
+    <string name="shr_product_description">Github Username</string>
+    <string name="shr_category_clothing">clothing</string>
+    <string name="shr_category_home">home</string>
+    <string name="shr_category_popsicles">popsicles</string>
+    <string name="action_favorite">Github User Details</string>
 </resources>
