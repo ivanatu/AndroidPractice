@@ -35,7 +35,7 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     public void onBindViewHolder(final GithubAdapter.ViewHolder holder, int position) {
         final GithubUsers githubusers = developers.get(position);
 
-//        holder.username.setText(githubusers.getUserName());
+        holder.username.setText(githubusers.getUserName());
 
         Picasso.with(context)
                 .load(githubusers.getProfileImage())
@@ -65,12 +65,13 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         public  ImageView imageView;
         public  TextView github;
-//        public  TextView username;
+        public  TextView username;
 
 
         public ViewHolder(View view) {
             super(view);
             imageView = view.findViewById(R.id.imageView);
+            username = view.findViewById(R.id.username);
         }
 
     }
